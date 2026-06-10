@@ -1,0 +1,31 @@
+name: SkyBlockEvent
+version: ${project.version}
+main: com.skyblockevent.SkyBlockEventPlugin
+api-version: '1.20'
+author: Shirito
+description: Custom SkyBlock server event system for Paper, Spigot and Bukkit.
+
+commands:
+  sbevent:
+    description: Manage SkyBlock server events.
+    usage: /<command> help
+    aliases: [skyblockevent, sbe]
+    permission: skyblockevent.command
+
+permissions:
+  skyblockevent.command:
+    description: Allows reading event status, list and help.
+    default: true
+  skyblockevent.participate:
+    description: Allows players to participate in events and earn score.
+    default: true
+  skyblockevent.notify:
+    description: Allows players to receive event broadcasts.
+    default: true
+  skyblockevent.admin:
+    description: Allows starting, stopping and reloading events.
+    default: op
+    children:
+      skyblockevent.command: true
+      skyblockevent.participate: true
+      skyblockevent.notify: true

@@ -1,0 +1,272 @@
+# SkyBlockEvent configuration
+#
+# Compatibility target:
+# - Compiled against Spigot API 1.20.4 with Java 17.
+# - Runtime target: Paper, Spigot and Bukkit 1.20.x+.
+#
+# Reward and milestone commands are dispatched as console commands.
+# Do not prefix commands with "/".
+
+settings:
+  locale: fr
+  debug: false
+  save-active-every-seconds: 60
+  history-limit: 50
+  broadcast-permission: skyblockevent.notify
+
+auto-rotation:
+  enabled: true
+  mode: sequence # sequence or random
+  initial-delay-minutes: 10
+  interval-minutes: 90
+  min-online-players: 1
+
+events:
+  comet-shower:
+    enabled: true
+    display-name: "&dPluie de Cometes"
+    type: COMET_SHOWER
+    duration-seconds: 900
+    target-score: 1800
+    points-per-action: 0
+    drop-multiplier: 1.10
+    materials:
+      - "#skyblock_blocks"
+      - "#ores"
+    custom-drop:
+      enabled: true
+      material: AMETHYST_SHARD
+      display-name: "&dEclat de comete"
+      lore:
+        - "&7Fragment instable tombe pendant la pluie."
+        - "&eRamasse-le pour charger l'evenement."
+      chance: 0.10
+      score: 18
+      glowing: true
+    combo:
+      enabled: true
+      window-seconds: 7
+      actions-per-tier: 4
+      multiplier-step: 0.25
+      max-multiplier: 2.50
+      actionbar: true
+    milestones:
+      server:
+        450:
+          message: "server-milestone"
+          commands:
+            - "xp add %player% 2 levels"
+        1200:
+          message: "server-milestone"
+          commands:
+            - "give %player% amethyst_shard 8"
+      personal:
+        120:
+          message: "personal-milestone"
+          commands:
+            - "give %player% amethyst_shard 4"
+        300:
+          message: "personal-milestone"
+          commands:
+            - "xp add %player% 4 levels"
+    start-message: "start"
+    end-message: "end"
+    rewards:
+      top:
+        1:
+          - "give %player% nether_star 1"
+          - "xp add %player% 12 levels"
+        2:
+          - "give %player% diamond 4"
+        3:
+          - "give %player% amethyst_shard 16"
+      participation:
+        min-score: 90
+        commands:
+          - "give %player% experience_bottle 12"
+
+  rift-harvest:
+    enabled: true
+    display-name: "&5Recolte de Faille"
+    type: RIFT_HARVEST
+    duration-seconds: 720
+    target-score: 1400
+    points-per-action: 1
+    drop-multiplier: 1.20
+    materials:
+      - "#crops"
+    custom-drop:
+      enabled: true
+      material: ECHO_SHARD
+      display-name: "&5Graine de faille"
+      lore:
+        - "&7Une graine qui vibre entre deux iles."
+        - "&eRamasse-la avant qu'elle ne se stabilise."
+      chance: 0.08
+      score: 22
+      glowing: true
+    combo:
+      enabled: true
+      window-seconds: 6
+      actions-per-tier: 6
+      multiplier-step: 0.20
+      max-multiplier: 2.20
+      actionbar: true
+    milestones:
+      server:
+        500:
+          message: "server-milestone"
+          commands:
+            - "give %player% bone_meal 32"
+      personal:
+        160:
+          message: "personal-milestone"
+          commands:
+            - "give %player% golden_carrot 16"
+    start-message: "start"
+    end-message: "end"
+    rewards:
+      top:
+        1:
+          - "give %player% emerald 12"
+        2:
+          - "give %player% golden_carrot 32"
+      participation:
+        min-score: 80
+        commands:
+          - "give %player% bread 16"
+
+  relic-hunt:
+    enabled: true
+    display-name: "&6Chasse aux Reliques"
+    type: RELIC_HUNT
+    duration-seconds: 900
+    target-score: 1500
+    points-per-action: 2
+    drop-multiplier: 1.10
+    materials: []
+    custom-drop:
+      enabled: true
+      material: HEART_OF_THE_SEA
+      display-name: "&6Relique instable"
+      lore:
+        - "&7Charge ancienne liberee par un mob."
+        - "&eRamasse-la pour verrouiller son energie."
+      chance: 0.12
+      score: 30
+      glowing: true
+    combo:
+      enabled: true
+      window-seconds: 12
+      actions-per-tier: 3
+      multiplier-step: 0.30
+      max-multiplier: 2.80
+      actionbar: true
+    milestones:
+      server:
+        600:
+          message: "server-milestone"
+          commands:
+            - "give %player% golden_apple 1"
+      personal:
+        180:
+          message: "personal-milestone"
+          commands:
+            - "xp add %player% 3 levels"
+    start-message: "start"
+    end-message: "end"
+    rewards:
+      top:
+        1:
+          - "give %player% diamond_sword 1"
+        2:
+          - "give %player% golden_apple 4"
+      participation:
+        min-score: 90
+        commands:
+          - "xp add %player% 5 levels"
+
+  abyssal-cache:
+    enabled: true
+    display-name: "&3Caches Abyssales"
+    type: FISHING
+    duration-seconds: 600
+    target-score: 900
+    points-per-action: 2
+    drop-multiplier: 1.15
+    materials: []
+    custom-drop:
+      enabled: true
+      material: PRISMARINE_CRYSTALS
+      display-name: "&bPerle abyssale"
+      lore:
+        - "&7Une cache remontee des profondeurs du vide."
+      chance: 0.18
+      score: 26
+      glowing: true
+    combo:
+      enabled: true
+      window-seconds: 20
+      actions-per-tier: 2
+      multiplier-step: 0.35
+      max-multiplier: 2.50
+      actionbar: true
+    milestones:
+      server:
+        300:
+          message: "server-milestone"
+          commands:
+            - "give %player% cooked_cod 16"
+      personal:
+        120:
+          message: "personal-milestone"
+          commands:
+            - "give %player% prismarine_crystals 8"
+    start-message: "start"
+    end-message: "end"
+    rewards:
+      top:
+        1:
+          - "give %player% prismarine_crystals 16"
+      participation:
+        min-score: 25
+        commands:
+          - "give %player% cooked_cod 16"
+
+  ether-overload:
+    enabled: true
+    display-name: "&eSurcharge d'Ether"
+    type: DOUBLE_DROPS
+    duration-seconds: 600
+    target-score: 700
+    points-per-action: 1
+    drop-multiplier: 1.75
+    materials:
+      - "#skyblock_blocks"
+      - "#crops"
+      - "#logs"
+    combo:
+      enabled: true
+      window-seconds: 5
+      actions-per-tier: 8
+      multiplier-step: 0.15
+      max-multiplier: 1.90
+      actionbar: true
+    milestones:
+      server:
+        350:
+          message: "server-milestone"
+          commands:
+            - "give %player% experience_bottle 6"
+      personal:
+        100:
+          message: "personal-milestone"
+          commands:
+            - "give %player% iron_ingot 16"
+    start-message: "start"
+    end-message: "end"
+    rewards:
+      top: {}
+      participation:
+        min-score: 0
+        commands: []
