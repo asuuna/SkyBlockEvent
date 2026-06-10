@@ -4,7 +4,7 @@
 
 Plugin Java custom pour gerer des evenements serveur inedits sur un SkyBlock: rotation automatique, objets d'event custom, combos de score, milestones serveur/joueur, classements, historique, boosts de drops et recompenses par commandes console.
 
-Createur et mainteneur: Shirito.
+Createur, auteur et mainteneur: Shirito.
 
 Ce depot contient le code source complet du plugin. L'objectif est de garder un plugin lisible, configurable et maintenable, avec des choix techniques simples a verifier: pas de dependances inutiles, pas d'I/O lourde sur le thread principal, et une separation claire entre configuration, logique d'event, stockage et presentation des messages.
 
