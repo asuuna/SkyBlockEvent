@@ -14,6 +14,7 @@ Toutes les modifications notables de SkyBlockEvent sont documentees ici.
 - Stockage YAML asynchrone avec historique.
 - Configuration et messages modifiables.
 - Tests unitaires Maven/JUnit.
+- Clarification de l'auteur du projet dans le depot: SkyBlockEvent est cree et maintenu par Shirito.
 
 ### Notes
 

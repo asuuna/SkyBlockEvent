@@ -8,6 +8,10 @@ Createur, auteur et mainteneur: Shirito.
 
 Ce depot contient le code source complet du plugin. L'objectif est de garder un plugin lisible, configurable et maintenable, avec des choix techniques simples a verifier: pas de dependances inutiles, pas d'I/O lourde sur le thread principal, et une separation claire entre configuration, logique d'event, stockage et presentation des messages.
 
+## Auteur
+
+SkyBlockEvent est un projet de Shirito. Le code source, la maintenance et les choix de gameplay de ce depot sont rattaches a Shirito.
+
 ## Etat du projet
 
 - Version actuelle: `1.0.0`.
