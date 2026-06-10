@@ -16,7 +16,8 @@ public final class CustomDropSettings {
         List.of(),
         0.0D,
         0,
-        false
+        false,
+        0L
     );
 
     private final boolean enabled;
@@ -26,6 +27,7 @@ public final class CustomDropSettings {
     private final double chance;
     private final int score;
     private final boolean glowing;
+    private final long despawnTicks;
 
     public CustomDropSettings(
         boolean enabled,
@@ -34,7 +36,8 @@ public final class CustomDropSettings {
         List<String> lore,
         double chance,
         int score,
-        boolean glowing
+        boolean glowing,
+        long despawnTicks
     ) {
         this.enabled = enabled;
         this.material = material == null ? Material.AIR : material;
@@ -43,6 +46,7 @@ public final class CustomDropSettings {
         this.chance = Math.max(0.0D, Math.min(1.0D, chance));
         this.score = Math.max(0, score);
         this.glowing = glowing;
+        this.despawnTicks = Math.max(0L, despawnTicks);
     }
 
     public boolean isEnabled() {
@@ -71,5 +75,9 @@ public final class CustomDropSettings {
 
     public boolean isGlowing() {
         return glowing;
+    }
+
+    public long getDespawnTicks() {
+        return despawnTicks;
     }
 }

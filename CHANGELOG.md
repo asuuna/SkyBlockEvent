@@ -15,6 +15,8 @@ Toutes les modifications notables de SkyBlockEvent sont documentees ici.
 - Configuration et messages modifiables.
 - Tests unitaires Maven/JUnit.
 - Clarification de l'auteur du projet dans le depot: SkyBlockEvent est cree et maintenu par Shirito.
+- Expiration configurable des objets d'event custom non ramasses.
+- Nettoyage interne des handles de taches Bukkit ponctuelles pour eviter leur accumulation pendant les broadcasts, sauvegardes et recompenses.
 
 ### Notes
 

@@ -9,6 +9,7 @@ import com.skyblockevent.model.ActiveEvent;
 import com.skyblockevent.model.CustomDropSettings;
 import com.skyblockevent.model.EventDefinition;
 import com.skyblockevent.model.EventType;
+import com.skyblockevent.platform.PlatformScheduler;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -40,11 +41,13 @@ import org.bukkit.plugin.Plugin;
 public final class SkyBlockEventListener implements Listener {
 
     private final EventManager eventManager;
+    private final PlatformScheduler scheduler;
     private final NamespacedKey customDropEventKey;
     private final NamespacedKey customDropScoreKey;
 
-    public SkyBlockEventListener(Plugin plugin, EventManager eventManager) {
+    public SkyBlockEventListener(Plugin plugin, EventManager eventManager, PlatformScheduler scheduler) {
         this.eventManager = eventManager;
+        this.scheduler = scheduler;
         this.customDropEventKey = new NamespacedKey(plugin, "custom_drop_event");
         this.customDropScoreKey = new NamespacedKey(plugin, "custom_drop_score");
     }
@@ -192,6 +195,13 @@ public final class SkyBlockEventListener implements Listener {
         Item item = location.getWorld().dropItemNaturally(location, stack);
         item.setGlowing(settings.isGlowing());
         item.setPickupDelay(10);
+        if (settings.getDespawnTicks() > 0L) {
+            scheduler.runGlobalLater(() -> {
+                if (!item.isDead() && item.isValid()) {
+                    item.remove();
+                }
+            }, settings.getDespawnTicks());
+        }
     }
 
     private void duplicateBlockDrops(BlockBreakEvent event, EventDefinition definition) {

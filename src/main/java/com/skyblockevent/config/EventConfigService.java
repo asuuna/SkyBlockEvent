@@ -166,7 +166,8 @@ public final class EventConfigService {
             section.getStringList("lore"),
             section.getDouble("chance", 0.05D),
             Math.max(1, section.getInt("score", 10)),
-            section.getBoolean("glowing", true)
+            section.getBoolean("glowing", true),
+            Math.max(0, section.getInt("despawn-seconds", 45)) * 20L
         );
     }
 

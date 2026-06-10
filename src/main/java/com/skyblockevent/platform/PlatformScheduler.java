@@ -6,6 +6,7 @@ package com.skyblockevent.platform;
 
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -28,25 +29,27 @@ public final class PlatformScheduler {
     }
 
     public TaskHandle runGlobal(Runnable task) {
-        return track(fromBukkitTask(Bukkit.getScheduler().runTask(plugin, wrap(task))));
+        return scheduleBukkit(task, false, runnable -> Bukkit.getScheduler().runTask(plugin, runnable));
     }
 
     public TaskHandle runGlobalLater(Runnable task, long delayTicks) {
-        return track(fromBukkitTask(Bukkit.getScheduler().runTaskLater(plugin, wrap(task), delayTicks)));
+        long safeDelayTicks = Math.max(1L, delayTicks);
+        return scheduleBukkit(task, false, runnable -> Bukkit.getScheduler().runTaskLater(plugin, runnable, safeDelayTicks));
     }
 
     public TaskHandle runGlobalTimer(Runnable task, long initialDelayTicks, long periodTicks) {
-        return track(fromBukkitTask(Bukkit.getScheduler()
-            .runTaskTimer(plugin, wrap(task), initialDelayTicks, Math.max(1L, periodTicks))));
+        long safeInitialDelayTicks = Math.max(1L, initialDelayTicks);
+        return scheduleBukkit(task, true, runnable -> Bukkit.getScheduler()
+            .runTaskTimer(plugin, runnable, safeInitialDelayTicks, Math.max(1L, periodTicks)));
     }
 
     public TaskHandle runAsync(Runnable task) {
-        return track(fromBukkitTask(Bukkit.getScheduler().runTaskAsynchronously(plugin, wrap(task))));
+        return scheduleBukkit(task, false, runnable -> Bukkit.getScheduler().runTaskAsynchronously(plugin, runnable));
     }
 
     public TaskHandle runAsyncLater(Runnable task, long delayMillis) {
         long delayTicks = Math.max(1L, delayMillis / 50L);
-        return track(fromBukkitTask(Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, wrap(task), delayTicks)));
+        return scheduleBukkit(task, false, runnable -> Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, runnable, delayTicks));
     }
 
     public TaskHandle runAtLocation(Location location, Runnable task) {
@@ -69,31 +72,69 @@ public final class PlatformScheduler {
         Bukkit.getScheduler().cancelTasks(plugin);
     }
 
-    private TaskHandle track(TaskHandle handle) {
-        if (handle == TaskHandle.NOOP) {
-            return handle;
-        }
+    private TaskHandle scheduleBukkit(Runnable task, boolean repeating, BukkitTaskFactory taskFactory) {
+        ScheduledTaskHandle handle = new ScheduledTaskHandle();
         activeHandles.add(handle);
-        return () -> {
-            try {
-                handle.cancel();
-            } finally {
-                activeHandles.remove(handle);
-            }
-        };
-    }
-
-    private TaskHandle fromBukkitTask(BukkitTask task) {
-        return task::cancel;
-    }
-
-    private Runnable wrap(Runnable task) {
-        return () -> {
+        Runnable wrapped = () -> {
             try {
                 task.run();
             } catch (RuntimeException exception) {
                 plugin.getLogger().log(Level.SEVERE, "Scheduled task failed", exception);
+            } finally {
+                if (!repeating) {
+                    handle.markCompleted();
+                    activeHandles.remove(handle);
+                }
             }
         };
+
+        try {
+            handle.setTask(taskFactory.schedule(wrapped));
+            if (handle.isCompleted()) {
+                activeHandles.remove(handle);
+            }
+            return handle;
+        } catch (RuntimeException exception) {
+            activeHandles.remove(handle);
+            throw exception;
+        }
+    }
+
+    @FunctionalInterface
+    private interface BukkitTaskFactory {
+        BukkitTask schedule(Runnable runnable);
+    }
+
+    private final class ScheduledTaskHandle implements TaskHandle {
+        private final AtomicBoolean cancelled = new AtomicBoolean();
+        private volatile BukkitTask task;
+        private volatile boolean completed;
+
+        private void setTask(BukkitTask task) {
+            this.task = task;
+            if (cancelled.get()) {
+                task.cancel();
+            }
+        }
+
+        private void markCompleted() {
+            completed = true;
+        }
+
+        private boolean isCompleted() {
+            return completed;
+        }
+
+        @Override
+        public void cancel() {
+            if (!cancelled.compareAndSet(false, true)) {
+                return;
+            }
+            BukkitTask currentTask = task;
+            if (currentTask != null) {
+                currentTask.cancel();
+            }
+            activeHandles.remove(this);
+        }
     }
 }

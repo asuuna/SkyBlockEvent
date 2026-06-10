@@ -106,6 +106,7 @@ Champs principaux:
 - `drop-multiplier`: multiplicateur de drops. `1.0` desactive le boost.
 - `materials`: materiaux ou categories (`#ores`, `#crops`, `#logs`, `#skyblock_blocks`).
 - `custom-drop`: item custom marque par metadata, chance d'apparition et score au ramassage.
+- `custom-drop.despawn-seconds`: duree avant suppression automatique d'un item custom non ramasse. `0` desactive l'expiration forcee.
 - `combo`: fenetre de combo, paliers, multiplicateur max et actionbar.
 - `milestones.server`: paliers globaux avec message et commandes.
 - `milestones.personal`: paliers par joueur avec message et commandes.

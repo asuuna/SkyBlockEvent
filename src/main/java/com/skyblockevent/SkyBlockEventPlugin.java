@@ -38,8 +38,7 @@ public final class SkyBlockEventPlugin extends JavaPlugin {
 
         reloadPluginState();
         registerCommands();
-        getServer().getPluginManager().registerEvents(new SkyBlockEventListener(this, eventManager), this);
-        eventManager.startAutoRotation();
+        getServer().getPluginManager().registerEvents(new SkyBlockEventListener(this, eventManager, scheduler), this);
 
         getLogger().info("SkyBlockEvent enabled on " + scheduler.getPlatformName()
             + ". Events loaded: " + configService.getDefinitions().size());
