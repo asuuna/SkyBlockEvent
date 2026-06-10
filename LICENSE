@@ -1,7 +1,35 @@
-Copyright (c) 2026 Shirito.
+SkyBlockEvent Proprietary License
 
+Copyright (c) 2026 Shirito.
 All rights reserved.
 
-This source code is provided for the SkyBlockEvent project repository.
-Redistribution, resale, public re-upload, or reuse in another project requires
-explicit permission from Shirito.
+Owner
+SkyBlockEvent, including its source code, configuration examples, documentation,
+plugin logic, event mechanics, package structure, and compiled builds, belongs
+to Shirito unless a written agreement signed by Shirito says otherwise.
+
+Allowed Use
+You may download, read, compile, and run this plugin for personal or server use.
+You may modify the plugin for your own private server environment.
+
+Restrictions
+Without explicit written permission from Shirito, you may not:
+
+- sell, rent, sublicense, or commercially redistribute the plugin;
+- publish, re-upload, mirror, or redistribute modified or unmodified copies;
+- remove or alter copyright, author, license, or ownership notices;
+- claim authorship or ownership of the plugin;
+- use the code as the base of another public or commercial plugin;
+- package the plugin inside a paid setup, marketplace product, or leaked bundle.
+
+Attribution
+Any allowed private use must keep the author attribution to Shirito in the
+source code, plugin metadata, documentation, and visible repository files.
+
+No Warranty
+This plugin is provided "as is", without warranty of any kind. Shirito is not
+responsible for data loss, server issues, configuration mistakes, conflicts
+with other plugins, or any other damage caused by use or modification.
+
+Permission
+Permissions outside this license must be requested directly from Shirito.

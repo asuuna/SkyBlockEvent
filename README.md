@@ -12,6 +12,10 @@ Ce depot contient le code source complet du plugin. L'objectif est de garder un 
 
 SkyBlockEvent est un projet de Shirito. Le code source, la maintenance et les choix de gameplay de ce depot sont rattaches a Shirito.
 
+## Licence
+
+SkyBlockEvent appartient a Shirito. Le code est publie sous licence proprietaire `All rights reserved`: lecture, compilation et usage serveur personnel autorises, mais redistribution, revente, re-upload, suppression de l'attribution ou revendication d'auteur interdites sans autorisation explicite de Shirito.
+
 ## Etat du projet
 
 - Version actuelle: `1.0.0`.
