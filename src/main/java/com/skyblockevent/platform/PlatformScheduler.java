@@ -1,3 +1,7 @@
+/*
+ * SkyBlockEvent
+ * Copyright (c) 2026 Shirito. All rights reserved.
+ */
 package com.skyblockevent.platform;
 
 import java.util.Set;

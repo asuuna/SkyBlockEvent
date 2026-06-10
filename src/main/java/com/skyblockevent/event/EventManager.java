@@ -1,3 +1,7 @@
+/*
+ * SkyBlockEvent
+ * Copyright (c) 2026 Shirito. All rights reserved.
+ */
 package com.skyblockevent.event;
 
 import com.skyblockevent.config.AutoRotationSettings;
