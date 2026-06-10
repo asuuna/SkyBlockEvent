@@ -1,0 +1,52 @@
+name: Bug report
+description: Signaler un bug du plugin SkyBlockEvent
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: input
+    id: server
+    attributes:
+      label: Serveur
+      description: Paper, Spigot ou Bukkit avec la version exacte.
+      placeholder: "Paper 1.20.4"
+    validations:
+      required: true
+  - type: input
+    id: java
+    attributes:
+      label: Version Java
+      placeholder: "Java 17"
+    validations:
+      required: true
+  - type: input
+    id: plugin
+    attributes:
+      label: Version du plugin
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Decrire le probleme observe.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction
+      description: Etapes pour reproduire le bug.
+      placeholder: |
+        1. Lancer ...
+        2. Executer ...
+        3. Observer ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Coller les logs utiles sans token ni information sensible.
+      render: text

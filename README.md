@@ -1,8 +1,20 @@
 # SkyBlockEvent
 
+[![Build](https://github.com/asuuna/SkyBlockEvent/actions/workflows/build.yml/badge.svg)](https://github.com/asuuna/SkyBlockEvent/actions/workflows/build.yml)
+
 Plugin Java custom pour gerer des evenements serveur inedits sur un SkyBlock: rotation automatique, objets d'event custom, combos de score, milestones serveur/joueur, classements, historique, boosts de drops et recompenses par commandes console.
 
-Createur: Shirito.
+Createur et mainteneur: Shirito.
+
+Ce depot contient le code source complet du plugin. L'objectif est de garder un plugin lisible, configurable et maintenable, avec des choix techniques simples a verifier: pas de dependances inutiles, pas d'I/O lourde sur le thread principal, et une separation claire entre configuration, logique d'event, stockage et presentation des messages.
+
+## Etat du projet
+
+- Version actuelle: `1.0.0`.
+- Branche principale: `main`.
+- Build Maven verifie avec Java 17.
+- Tests unitaires presents pour la logique de score et le formatage de temps.
+- Jar genere localement avec `mvn clean package`.
 
 ## Compatibilite
 
@@ -26,6 +38,13 @@ Le jar est genere dans `target/SkyBlockEvent-1.0.0.jar`.
 2. Demarrer le serveur une premiere fois.
 3. Modifier `plugins/SkyBlockEvent/config.yml` et `messages.yml`.
 4. Recharger avec `/sbevent reload` ou redemarrer.
+
+## Notes de maintenance
+
+- Les changements de configuration doivent rester documentes dans ce README.
+- Les nouvelles commandes doivent etre ajoutees dans `plugin.yml`, `messages.yml` et la section Commandes.
+- Les nouvelles mecaniques d'event doivent rester configurables et testables sans imposer un plugin SkyBlock tiers.
+- Avant une mise en production, lancer `mvn clean package` puis tester le jar sur un serveur de preproduction.
 
 ## Commandes
 
@@ -120,3 +139,7 @@ Le plugin ecrit `plugins/SkyBlockEvent/data/events.yml` de maniere asynchrone:
 - Les recompenses et milestones sont des commandes console: leur comportement depend aussi des plugins appeles par ces commandes.
 - Sans API SkyBlock externe, le plugin ne filtre pas par ile ou membre d'ile.
 - Les tests automatiques valident la compilation et la logique Java disponible; un test serveur manuel reste necessaire pour confirmer les interactions avec les plugins de votre stack.
+
+## Support
+
+Les bugs et demandes d'amelioration doivent etre ouverts dans les issues GitHub avec la version serveur, la version Java, la version du plugin et les logs utiles. Shirito reste le point de reference pour les decisions de gameplay et de configuration.

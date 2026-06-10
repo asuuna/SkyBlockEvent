@@ -10,10 +10,31 @@
 
     <name>SkyBlockEvent</name>
     <description>Custom server events for SkyBlock servers.</description>
+    <url>https://github.com/asuuna/SkyBlockEvent</url>
+
+    <licenses>
+        <license>
+            <name>All Rights Reserved</name>
+            <url>https://github.com/asuuna/SkyBlockEvent/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/asuuna/SkyBlockEvent.git</connection>
+        <developerConnection>scm:git:https://github.com/asuuna/SkyBlockEvent.git</developerConnection>
+        <url>https://github.com/asuuna/SkyBlockEvent</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <developers>
         <developer>
+            <id>shirito</id>
             <name>Shirito</name>
+            <roles>
+                <role>Creator</role>
+                <role>Maintainer</role>
+            </roles>
         </developer>
     </developers>
 

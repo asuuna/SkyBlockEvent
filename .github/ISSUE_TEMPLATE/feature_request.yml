@@ -1,0 +1,26 @@
+name: Feature request
+description: Proposer une amelioration pour SkyBlockEvent
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Besoin
+      description: Expliquer le probleme gameplay ou administration a resoudre.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposition
+      description: Decrire le comportement attendu.
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Configuration souhaitee
+      description: Exemple d'option config.yml si pertinent.
+      render: yaml
